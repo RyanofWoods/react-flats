@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FlatList from './flat-list';
-// import Map from './map';
+import Map from './map';
 import flats from '../../data/flats';
 
 class App extends Component {
@@ -19,9 +19,13 @@ class App extends Component {
 
   render () {
     return (
-      <div className="container d-flex">
-        <FlatList flats={this.state.flatsData} selectFunction={this.selectFlat} />
-        {/* <Map /> */}
+      <div className="row">
+        <div className="col-12 col-md-6 p-0 m-0">
+          <FlatList flats={this.state.flatsData} selectFunction={this.selectFlat} />
+        </div>
+        <div className="col-12 col-md-6 p-0 m-0">
+          <Map />
+        </div>
       </div>
     );
   }
