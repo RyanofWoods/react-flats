@@ -6,16 +6,13 @@ class Map extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      map: '',
-      currentMarker: ''
-    };
+    this.map = '';
+    this.currentMarker = '';
   }
 
   componentDidMount() {
     this.initMapbox();
   }
-
 
   shouldComponentUpdate(nextProps) {
     this.updateMapMarker(nextProps.coords);
@@ -28,27 +25,31 @@ class Map extends Component {
     if (mapElement) { // only build a map if there's a div#map to inject into
       mapboxgl.accessToken = 'pk.eyJ1Ijoicnlhbm9md29vZHMiLCJhIjoiY2trc2Y5MWIzMGNybzJ3cGxlNWF2ZHJkaSJ9.SdPJFs9PoXyG8TewSgyVvQ';
 
-      const map = new mapboxgl.Map({
+      this.map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/ryanofwoods/cklkxz9fy0ww017rz39sc6zrp', // style URL
         center: [-74.5, 40], // starting position [lng, lat]
         zoom: 9 // starting zoom
       });
-      this.setState({ map });
     }
   };
 
   updateMapMarker(coords) {
-    if (coords !== {} && this.state.map !== '') {
+    if (coords !== {} && this.map !== '') {
       const { lng, lat } = coords;
-      new mapboxgl.Marker({ color: "#00755E" })
+
+      if (this.currentMarker !== '') {
+        this.currentMarker.remove();
+      }
+
+      this.currentMarker = new mapboxgl.Marker({ color: "#00755E" })
         .setLngLat([lng, lat])
-        .addTo(this.state.map);
+        .addTo(this.map);
 
       // once all markers are added, fit all markers within map viewport
       const bounds = new mapboxgl.LngLatBounds();
       bounds.extend([lng, lat]);
-      this.state.map.fitBounds(bounds, { padding: 70, maxZoom: 13, duration: 0 });
+      this.map.fitBounds(bounds, { padding: 70, maxZoom: 13, duration: 0 });
     }
   }
 
