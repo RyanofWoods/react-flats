@@ -26,9 +26,9 @@ class Map extends Component {
 
       this.map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/ryanofwoods/cklkxz9fy0ww017rz39sc6zrp', // style URL
-        center: [-74.5, 40], // starting position [lng, lat]
-        zoom: 9 // starting zoom
+        style: 'mapbox://styles/ryanofwoods/cklkxz9fy0ww017rz39sc6zrp',
+        center: [2.35, 48.85], // starting position [lng, lat]
+        zoom: 11 // starting zoom
       });
     }
   };
