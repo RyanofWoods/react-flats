@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Flat from './flat';
 
-class Flatlist extends Component {
+class FlatList extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
     };
@@ -11,6 +11,15 @@ class Flatlist extends Component {
 
   render() {
     return (
+      <div className="row">
+        {
+          // eslint-disable-next-line react/destructuring-assignment
+          this.props.flats.map((flat) => {
+            const { imageUrl } = flat;
+            return <div className="col-12 col-sm-6"><Flat key={imageUrl} imageUrl={imageUrl} /></div>;
+          })
+        }
+      </div>
     );
   }
 }
