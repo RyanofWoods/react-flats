@@ -13,10 +13,14 @@ class App extends Component {
     };
   }
 
+  selectFlat = () => {
+    this.setState({ selectedFlat: 'hi'});
+  };
+
   render () {
     return (
       <div className="container d-flex">
-        <FlatList flats={this.state.flatsData} />
+        <FlatList flats={this.state.flatsData} selectFunction={this.selectFlat} />
         {/* <Map /> */}
       </div>
     );

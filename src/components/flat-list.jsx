@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import Flat from './flat';
 
@@ -13,10 +14,9 @@ class FlatList extends Component {
     return (
       <div className="row">
         {
-          // eslint-disable-next-line react/destructuring-assignment
           this.props.flats.map((flat) => {
             const { imageUrl } = flat;
-            return <div className="col-12 col-sm-6"><Flat key={imageUrl} imageUrl={imageUrl} /></div>;
+            return <div className="col-12 col-sm-6"><Flat key={imageUrl} imageUrl={imageUrl} selectFunction={this.props.selectFunction} /></div>;
           })
         }
       </div>

@@ -2,6 +2,13 @@
 import React, { Component } from 'react';
 
 class Flat extends Component {
+  handleClick = () => {
+    const { selectFunction } = this.props;
+    if (selectFunction) {
+      selectFunction();
+    }
+  };
+
   render() {
     const { imageUrl } = this.props;
     const flatStyle = {
@@ -9,7 +16,7 @@ class Flat extends Component {
     };
 
     return (
-      <div className="flat" style={flatStyle} alt="" />
+      <div className="flat" style={flatStyle} alt="" onClick={this.handleClick} />
     );
   }
 }
