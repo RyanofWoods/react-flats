@@ -1,4 +1,3 @@
-/* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 
 class Flat extends Component {
@@ -10,13 +9,16 @@ class Flat extends Component {
   };
 
   render() {
-    const { imageUrl } = this.props;
+    const { name, imageUrl, price, priceCurrency } = this.props;
     const flatStyle = {
       backgroundImage: `url("${imageUrl}")`
     };
 
     return (
-      <div className="flat" style={flatStyle} alt="" onClick={this.handleClick} />
+      <div className="flat" style={flatStyle} alt="" onClick={this.handleClick}>
+        <p className="flat-price">{`${price} ${priceCurrency}`}</p>
+        <p className="flat-name">{name}</p>
+      </div>
     );
   }
 }

@@ -7,12 +7,12 @@ const FlatList = ({ flats, selectFunction }) => {
     <div className="flat-list">
       {
         flats.map((flat) => {
-          const { imageUrl } = flat;
-          return <Flat key={imageUrl} imageUrl={imageUrl} selectFunction={selectFunction} />;
+          const { name, imageUrl, price, priceCurrency } = flat;
+          return <Flat key={imageUrl} name={name} imageUrl={imageUrl} price={price} priceCurrency={priceCurrency} selectFunction={selectFunction} />;
         })
       }
     </div>
   );
-}
+};
 
 export default FlatList;
