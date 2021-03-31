@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 
 class Flat extends Component {
   handleClick = () => {
-    const { selectFunction } = this.props;
+    const { selectFunction, lat, lng } = this.props;
     if (selectFunction) {
-      selectFunction();
+      selectFunction(lat, lng);
     }
   };
 

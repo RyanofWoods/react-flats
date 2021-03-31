@@ -7,6 +7,8 @@ class Map extends Component {
     super(props);
 
     this.state = {
+      map: '',
+      currentMarker: ''
     };
   }
 
@@ -14,36 +16,41 @@ class Map extends Component {
     this.initMapbox();
   }
 
+
+  shouldComponentUpdate(nextProps) {
+    this.updateMapMarker(nextProps.coords);
+    return false; // we never want to re-render the map
+  }
+
   initMapbox = () => {
     const mapElement = document.getElementById('map');
 
-    // const fitMapToMarker = (map, marker) => {
-    //   const bounds = new mapboxgl.LngLatBounds();
-    //   bounds.extend([marker.lng, marker.lat]);
-    //   map.fitBounds(bounds, { padding: 70, maxZoom: 13, duration: 0 });
-    // };
-
     if (mapElement) { // only build a map if there's a div#map to inject into
       mapboxgl.accessToken = 'pk.eyJ1Ijoicnlhbm9md29vZHMiLCJhIjoiY2trc2Y5MWIzMGNybzJ3cGxlNWF2ZHJkaSJ9.SdPJFs9PoXyG8TewSgyVvQ';
+
       const map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/ryanofwoods/cklkxz9fy0ww017rz39sc6zrp', // style URL
         center: [-74.5, 40], // starting position [lng, lat]
         zoom: 9 // starting zoom
       });
-
-      // parse the html json dataset to actual markers
-      // add them to the map
-      // const marker = JSON.parse(mapElement.dataset.marker);
-
-      // new mapboxgl.Marker({ color: "#00755E" })
-      //   .setLngLat([marker.lng, marker.lat])
-      //   .addTo(map);
-
-      // once all markers are added, fit all markers within map viewport
-      // fitMapToMarker(map, marker);
+      this.setState({ map });
     }
   };
+
+  updateMapMarker(coords) {
+    if (coords !== {} && this.state.map !== '') {
+      const { lng, lat } = coords;
+      new mapboxgl.Marker({ color: "#00755E" })
+        .setLngLat([lng, lat])
+        .addTo(this.state.map);
+
+      // once all markers are added, fit all markers within map viewport
+      const bounds = new mapboxgl.LngLatBounds();
+      bounds.extend([lng, lat]);
+      this.state.map.fitBounds(bounds, { padding: 70, maxZoom: 13, duration: 0 });
+    }
+  }
 
   render() {
     return (

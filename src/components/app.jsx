@@ -8,23 +8,24 @@ class App extends Component {
     super(props);
 
     this.state = {
-      selectedFlat: '',
+      selectedFlat: {},
       flatsData: flats
     };
   }
 
-  selectFlat = () => {
-    this.setState({ selectedFlat: 'hi'});
+  selectFlat = (lat, lng) => {
+    this.setState({ selectedFlat: { lat, lng } });
   };
 
   render () {
+    const { flatsData, selectedFlat } = this.state;
     return (
       <div className="row">
         <div className="col-12 col-md-6 p-0 m-0">
-          <FlatList flats={this.state.flatsData} selectFunction={this.selectFlat} />
+          <FlatList flats={flatsData} selectFunction={this.selectFlat} />
         </div>
         <div className="col-12 col-md-6 p-0 m-0">
-          <Map />
+          <Map coords={selectedFlat} />
         </div>
       </div>
     );

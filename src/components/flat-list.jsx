@@ -7,8 +7,8 @@ const FlatList = ({ flats, selectFunction }) => {
     <div className="flat-list">
       {
         flats.map((flat) => {
-          const { name, imageUrl, price, priceCurrency } = flat;
-          return <Flat key={imageUrl} name={name} imageUrl={imageUrl} price={price} priceCurrency={priceCurrency} selectFunction={selectFunction} />;
+          const { name, imageUrl, price, priceCurrency, lat, lng } = flat;
+          return <Flat key={imageUrl} name={name} imageUrl={imageUrl} price={price} priceCurrency={priceCurrency} lat={lat} lng={lng} selectFunction={selectFunction} />;
         })
       }
     </div>
