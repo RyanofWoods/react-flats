@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import mapboxgl from 'mapbox-gl';
 
 class Map extends Component {
@@ -58,5 +59,9 @@ class Map extends Component {
     );
   }
 }
+
+Map.propTypes = {
+  coords: PropTypes.objectOf(PropTypes.number)
+};
 
 export default Map;

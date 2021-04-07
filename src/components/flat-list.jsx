@@ -1,6 +1,6 @@
 import React from 'react';
-import Flat from './flat';
 import PropTypes from 'prop-types';
+import Flat from './flat';
 
 const FlatList = ({ flats, selectFunction }) => {
   return (
