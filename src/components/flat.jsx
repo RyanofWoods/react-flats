@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Flat extends Component {
   handleClick = () => {
@@ -23,5 +24,16 @@ class Flat extends Component {
     );
   }
 }
+
+Flat.propTypes = {
+  name: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string,
+  price: PropTypes.number.isRequired,
+  priceCurrency: PropTypes.string.isRequired
+};
+
+Flat.defaultProps = {
+  imageUrl: ''
+};
 
 export default Flat;
