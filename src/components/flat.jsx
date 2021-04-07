@@ -29,7 +29,10 @@ Flat.propTypes = {
   name: PropTypes.string.isRequired,
   imageUrl: PropTypes.string,
   price: PropTypes.number.isRequired,
-  priceCurrency: PropTypes.string.isRequired
+  priceCurrency: PropTypes.string.isRequired,
+  selectFunction: PropTypes.func,
+  lat: PropTypes.number,
+  lng: PropTypes.number
 };
 
 Flat.defaultProps = {
