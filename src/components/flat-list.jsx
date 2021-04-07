@@ -1,5 +1,6 @@
 import React from 'react';
 import Flat from './flat';
+import PropTypes from 'prop-types';
 
 const FlatList = ({ flats, selectFunction }) => {
   return (
@@ -23,6 +24,10 @@ const FlatList = ({ flats, selectFunction }) => {
       }
     </div>
   );
+};
+
+FlatList.propTypes = {
+  flats: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default FlatList;
